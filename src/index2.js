@@ -7,6 +7,7 @@ const badGoodButton = document.createElement('button')
 
 //data
 let currentPup;
+let filterOff = true;
 
 const render = function(){
   fetch('http://localhost:3000/pups')
@@ -14,23 +15,31 @@ const render = function(){
       return response.json()
     })
     .then(function(pups){
-      console.log(pups)
       renderPupsBar(pups)
     })
 }
 
 const renderPupsBar = function(pups){
   pupBar.innerHTML = ''
-  for(const pup of pups){
-    const addPupToBar = document.createElement('span')
-    addPupToBar.innerHTML = pup.name
-    addPupToBar.addEventListener('click', function(e){
-      currentPup = pup
-      renderPupInfo()
-    })
-    pupBar.append(addPupToBar)
-  }
+  pups.forEach(function(pup){
+    if(filterOff){
+      pupBarFunc(pup)
+    }else if(pup.isGoodDog){
+      pupBarFunc(pup)
+    }
+  })
+
 };
+
+const pupBarFunc = function(pup){
+  const addPupToBar = document.createElement('span')
+  addPupToBar.innerHTML = pup.name
+  addPupToBar.addEventListener('click', function(e){
+    currentPup = pup
+    renderPupInfo()
+  })
+  pupBar.append(addPupToBar)
+}
 
 const renderPupInfo = function(){
   pupInfo.innerHTML = ''
@@ -45,17 +54,35 @@ const renderPupInfo = function(){
   pupInfo.append(showPupName)
   pupInfo.append(showPupPic)
   pupInfo.append(badGoodButton)
-}
+};
 
 badGoodButton.addEventListener('click', function(e){
+  pupInfo.innerHTML = ''
   if(currentPup.isGoodDog){
     currentPup.isGoodDog = false
   }else{
     currentPup.isGoodDog = true
   }
-  console.log(currentPup.isGoodDog);
   updatePup()
-})
+  if(filterOff){
+    renderPupInfo(currentPup)
+  }else if(currentPup.isGoodDog){
+    renderPupsInfo(currentPup)
+  }
+});
+
+goodDogFilter.addEventListener('click', function(e){
+  pupInfo.innerHTML = ''
+  if(filterOff){
+    filterOff = false
+    goodDogFilter.innerHTML = 'Filter good dogs: ON'
+  }else{
+    filterOff = true
+    goodDogFilter.innerHTML = 'Filter good dogs: OFF'
+  }
+  render()
+});
+
 
 const updatePup = function(){
   fetch(`http://localhost:3000/pups/${currentPup.id}` , {
@@ -67,7 +94,7 @@ const updatePup = function(){
       isGoodDog: currentPup.isGoodDog
     })
   })
-    .then(renderPupInfo)
-}
+    .then(render)
+};
 
 render()
