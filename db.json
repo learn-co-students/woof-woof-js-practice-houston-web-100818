@@ -21,7 +21,7 @@
     {
       "id": 4,
       "name": "Buttercup",
-      "isGoodDog": false,
+      "isGoodDog": true,
       "image": "https://www.petinsurance.com/images/VSSimages/consumer/v5/banner_dog_insurance.jpg"
     },
     {
@@ -33,13 +33,13 @@
     {
       "id": 6,
       "name": "Snooper Pooper",
-      "isGoodDog": false,
+      "isGoodDog": true,
       "image": "https://static01.nyt.com/images/2018/02/11/realestate/11dogs-topbreeds-Chihuahua/11dogs-topbreeds-Chihuahua-master495.jpg"
     },
     {
       "id": 7,
       "name": "Puddles",
-      "isGoodDog": true,
+      "isGoodDog": false,
       "image": "https://img.purch.com/w/660/aHR0cDovL3d3dy5saXZlc2NpZW5jZS5jb20vaW1hZ2VzL2kvMDAwLzA5Ny84OTEvb3JpZ2luYWwvd2h5LWRvZ3MtZWF0LXBvb3A="
     },
     {
@@ -51,7 +51,7 @@
     {
       "id": 9,
       "name": "Middens",
-      "isGoodDog": true,
+      "isGoodDog": false,
       "image": "http://www.slate.com/content/dam/slate/articles/health_and_science/Science/2017/08/170803_MEDEX_SickDog.jpg.CROP.promo-xlarge2.jpg"
     },
     {
