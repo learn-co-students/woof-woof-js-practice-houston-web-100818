@@ -36,7 +36,6 @@ const renderPupInfo = function(){
   pupInfo.innerHTML = ''
   showPupName.innerHTML = currentPup.name
   showPupPic.src = currentPup.image
-
   if(currentPup.isGoodDog){
     badGoodButton.innerHTML = "Good Dog!"
   }else{
@@ -54,11 +53,12 @@ badGoodButton.addEventListener('click', function(e){
   }else{
     currentPup.isGoodDog = true
   }
+  console.log(currentPup.isGoodDog);
   updatePup()
 })
 
 const updatePup = function(){
-  fetch(`http://localhost:3000/dogs/${currentPup.id}` , {
+  fetch(`http://localhost:3000/pups/${currentPup.id}` , {
     method: 'PATCH',
     headers: {
       'Content-Type':'application/json'
