@@ -15,24 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
     doggoBar.innerHTML = ''
     // fetch all doggos
     fetch('http://localhost:3000/pups')
-      .then(function(response) {
-        return response.json()
-      }).then(function(pups) {
-          //filter out the bad boys if the filter is on
-          if (filterButton.innerText === 'Filter good dogs: ON') {
-            pups = filterGoodBoys(pups)
-          }
-          // iterate over filtered puppers
-          pups.forEach(function(pupper) {
-            // render each pupper's name in the doggo bar
-            const pupperSpan = doggoBar.appendChild(document.createElement('span'))
-            pupperSpan.innerText = pupper.name
-            // add event listener to each pupper name
-            pupperSpan.addEventListener('click', function() {
-              renderDoggo(pupper)
-            })
-          })
+    .then(function(response) {
+      return response.json()
+    }).then(function(pups) {
+      //filter out the bad boys if the filter is on
+      if (filterButton.innerText === 'Filter good dogs: ON') {
+        pups = filterGoodBoys(pups)
+      }
+      // iterate over filtered puppers
+      pups.forEach(function(pupper) {
+        // render each pupper's name in the doggo bar
+        const pupperSpan = doggoBar.appendChild(document.createElement('span'))
+        pupperSpan.innerText = pupper.name
+        // add event listener to each pupper name
+        pupperSpan.addEventListener('click', function() {
+          renderDoggo(pupper)
+        })
       })
+    })
   }
 
   const renderDoggo = function(pupper) {
