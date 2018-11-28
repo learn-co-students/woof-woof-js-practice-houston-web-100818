@@ -56,7 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const goodifyDoggo = function(pupper) {
     // flip isGoodDog attribute
     pupper.isGoodDog = !pupper.isGoodDog
+    updateDoggo(pupper)
+    renderDoggo(pupper)
+  }
 
+  const updateDoggo = function(pupper) {
     // patch request to save new attributes of current pupper
     fetch(`http://localhost:3000/pups/${pupper.id}`, {
       method: 'PATCH',
@@ -67,7 +71,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }).then(function(response) {
       return response.json()
     }).then(render)
-    renderDoggo(pupper)
   }
 
   const filterGoodBoys = function(pups) {
