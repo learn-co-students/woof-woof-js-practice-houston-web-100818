@@ -1,3 +1,5 @@
+//my solution
+
 const pupBar = document.querySelector('#dog-bar')
 const pupInfo = document.querySelector('#dog-info')
 const goodDogFilter = document.querySelector('#good-dog-filter')
